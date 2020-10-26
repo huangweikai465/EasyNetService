@@ -31,8 +31,8 @@ void NewServiceMsg(std::string _szIP, std::string _szHostName, ServiceList* _pPo
 
 void PrintUsage(void)
 {
-	cout << "Usage: EasyNetServiceClient [-t (tcpport)] [-u (udpport)]" << endl;
-	cout << "such as : \"EasyNetServiceClient -t 3456 -u 5678\"" << endl;
+	cout << "Usage: ensclient [-t (tcpport)] [-u (udpport)]" << endl;
+	cout << "such as : \"ensclient -t 3456 -u 5678\"" << endl;
 	cout << "default tcpport is " << g_uTcpPort << endl;
 	cout << "default udpport is " << g_uUdpPort << endl;
 }
