@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/qm" lang="zh_CN">
+        <file>zh_EN.qm</file>
+        <file>widgets_zh_CN.qm</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>logo.ico</file>
+        <file>logo.icns</file>
+    </qresource>
+</RCC>

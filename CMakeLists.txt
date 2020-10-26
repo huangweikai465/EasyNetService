@@ -1,0 +1,37 @@
+﻿CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+project(EasyNetService VERSION 1.0)
+
+# 判断操作系统
+MESSAGE(STATUS "operation system is ${CMAKE_SYSTEM}")
+IF (UNIX AND NOT APPLE)
+    MESSAGE(STATUS "Setting LINUX Config")
+    add_definitions(-D LINUX)
+    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ELSEIF (APPLE)
+    MESSAGE(STATUS "Setting MAC Config")
+    add_definitions(-D MACOS)
+    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ELSEIF (WIN32)
+    MESSAGE(STATUS "Setting WINDOWS Config")
+	add_definitions(-D WIN32)
+	add_definitions(-D _CRT_SECURE_NO_WARNINGS)
+ELSE ()
+    MESSAGE(FATAL_ERROR "Current System Not Supported")
+ENDIF ()
+
+#设置输出文件夹
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+SET(ENSCLIENTLIBNAME ENSClientLib)
+SET(ENSSERVERLIBNAME ENSServerLib)
+include_directories(${PROJECT_SOURCE_DIR}/Src/cJSON)
+include_directories(${PROJECT_SOURCE_DIR}/Src/Socket)
+include_directories(${PROJECT_SOURCE_DIR}/Src/Log)
+include_directories(${PROJECT_SOURCE_DIR}/Src/Client)
+include_directories(${PROJECT_SOURCE_DIR}/Src/Server)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/Src)
+add_subdirectory(${PROJECT_SOURCE_DIR}/App)
