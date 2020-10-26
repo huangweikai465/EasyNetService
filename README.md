@@ -139,15 +139,15 @@ ensmanager add -p 80 -t web -n MyWeb
 
 Mac版本下载链接如下：
 
-[x86下载](https://github.com/huangweikai465/EasyNetService/Bin/Mac/x86/ENSClient.dmg)
+[x86下载](https://github.com/huangweikai465/EasyNetService/blob/main/Bin/Mac/x86/ENSClient.dmg)
 
-[x64下载](https://github.com/huangweikai465/EasyNetService/Bin/Mac/x64/ENSClient.dmg)
+[x64下载](https://github.com/huangweikai465/EasyNetService/blob/main/Bin/Mac/x64/ENSClient.dmg)
 
 Windows版本下载链接如下：
 
-[x86下载](https://github.com/huangweikai465/EasyNetService/Bin/Windows/x86.zip)
+[x86下载](https://github.com/huangweikai465/EasyNetService/blob/main/Bin/Windows/x86.zip)
 
-[x64下载](https://github.com/huangweikai465/EasyNetService/Bin/Windows/x64.zip)
+[x64下载](https://github.com/huangweikai465/EasyNetService/blob/main/Bin/Windows/x64.zip)
 
 ## 单独下载服务端代码
 
