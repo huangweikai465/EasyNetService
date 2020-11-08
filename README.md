@@ -21,9 +21,9 @@ EasyNetService（以下简称：ENS）由客户端和服务端构成，服务端
 
 客户端界面示例如下：
 
-![Mac](D:/Github/EasyNetService/doc/md/img/mac.png)
+![Mac](./doc/md/img/mac.png)
 
-![win](D:/Github/EasyNetService/doc/md/img/win.png)
+![win](./doc/md/img/win.png)
 
 ## 命令行工具
 
