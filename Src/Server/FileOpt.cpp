@@ -65,7 +65,7 @@ bool FileOpt::CreateCfgFile(std::string _szFilePath,std::string _szFileName,std:
     return false;
 }
 
-bool FileOpt::CreateDefaultDirectory(std::string _szDirName)
+bool FileOpt::CreateDirectory(std::string _szDirName)
 {
 #if defined (WIN32)
     if (CreateDirectoryA(_szDirName.c_str(), nullptr) == 0)
@@ -75,6 +75,8 @@ bool FileOpt::CreateDefaultDirectory(std::string _szDirName)
 #elif defined(LINUX) || defined (MACOS)
     if(mkdir(_szDirName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == 0)
     {
+        std::string chmod = "chmod 755 " + _szDirName;
+        system(chmod.c_str());
         return true;
     }
 #endif
@@ -88,23 +90,11 @@ std::string FileOpt::GetConfigPath()
     szHome += "\\";
     szHome += getenv("HOMEPATH");
     std::string szConfigPath = szHome + "\\" + CONFIGDIR;
+    return szConfigPath + "\\";
 
 #elif defined(LINUX) || defined (MACOS)
     std::string szHome = getenv("HOME");
     std::string szConfigPath = szHome + "/" + CONFIGDIR;
-#endif
-    if(IsAccessible(szConfigPath) == false)
-    {
-        Log::Normal("Can't access to %s,creating...\r\n",szConfigPath.c_str());
-        if(CreateDefaultDirectory(szConfigPath) == false)
-        {
-            Log::Error("Mkdir %s Failed ",GetErrNo,szConfigPath.c_str());
-        }
-        Log::Normal("Create Success\r\n");
-    }
-#if defined(WIN32)
-    return szConfigPath + "\\";
-#elif defined (LINUX) || defined (MACOS)
     return szConfigPath + "/";
 #endif
 }
@@ -120,7 +110,20 @@ FileOpt::FileOpt(std::string _szFileName,std::string szDefaultContent)
       m_szConfigPath(c_szPath)
 {
     std::string szFile = m_szConfigPath + m_szFileName;
-    int sAccessible = IsAccessible(szFile);
+    int sAccessible = IsAccessible(m_szConfigPath);
+    if(sAccessible == false)
+    {
+        if(IsAccessible(m_szConfigPath) == false)
+        {
+            Log::Normal("Can't access to %s,creating...\r\n",m_szConfigPath.c_str());
+            if(CreateDirectory(m_szConfigPath) == false)
+            {
+                Log::Error("Mkdir %s Failed ",GetErrNo,m_szConfigPath.c_str());
+            }
+            Log::Normal("Create Success\r\n");
+        }
+    }
+    sAccessible = IsAccessible(szFile);
     if (sAccessible == false)
     {
         Log::Normal("Can't access to %s,creating...\r\n",szFile.c_str());
